@@ -163,7 +163,7 @@ ul { list-style: none; }
   width: 54px;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid var(--gold-dim);
+  border: 2px solid var(--gold);
 }
 
 .nav-links {
@@ -295,7 +295,7 @@ ul { list-style: none; }
   height: 300px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid var(--gold-dim);
+  border: 3px solid var(--gold);
   box-shadow: 0 0 60px rgba(201,168,76,0.15), 0 0 120px rgba(201,168,76,0.06);
   animation: heroFadeIn 1s ease both;
 }
@@ -891,7 +891,7 @@ ul { list-style: none; }
   height: 64px;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid var(--gold-dim);
+  border: 2px solid var(--gold);
 }
 
 .footer-brand p {
