@@ -161,10 +161,9 @@ ul { list-style: none; }
 .nav-logo {
   height: 54px;
   width: 54px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
   border: 2px solid var(--gold-dim);
-  background: #1a1814;
 }
 
 .nav-links {
@@ -294,10 +293,9 @@ ul { list-style: none; }
 .hero-logo {
   width: 300px;
   height: 300px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
   border: 3px solid var(--gold-dim);
-  background: #1a1814;
   box-shadow: 0 0 60px rgba(201,168,76,0.15), 0 0 120px rgba(201,168,76,0.06);
   animation: heroFadeIn 1s ease both;
 }
@@ -580,9 +578,8 @@ ul { list-style: none; }
 .why-logo {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
-  background: #1a1814;
 }
 
 /* =============================================
@@ -892,10 +889,9 @@ ul { list-style: none; }
 .footer-logo {
   width: 64px;
   height: 64px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
   border: 2px solid var(--gold-dim);
-  background: #1a1814;
 }
 
 .footer-brand p {
