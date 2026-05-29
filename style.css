@@ -691,6 +691,106 @@ ul { list-style: none; }
 }
 
 /* =============================================
+   THE NAME — TROS ORIGIN CALLOUT
+   ============================================= */
+.tros-origin {
+  background: var(--bg-3);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 0;
+  position: relative;
+  overflow: hidden;
+}
+/* Faint giant background text */
+.tros-origin::before {
+  content: 'TROY';
+  position: absolute;
+  right: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--f-display);
+  font-size: clamp(5rem, 14vw, 11rem);
+  color: rgba(255,255,255,0.025);
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.origin-inner {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.origin-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+.origin-word {
+  font-family: var(--f-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  color: var(--orange);
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+.origin-sublabel {
+  font-family: var(--f-ui);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.origin-divider {
+  width: 1px;
+  height: 80px;
+  background: var(--border-2);
+  flex-shrink: 0;
+}
+
+.origin-content {
+  position: relative;
+  z-index: 1;
+}
+.origin-tag {
+  font-family: var(--f-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--orange);
+  display: block;
+  margin-bottom: 0.65rem;
+}
+.origin-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 74ch;
+}
+.origin-text em {
+  font-style: italic;
+  color: var(--sand-lt);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .origin-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .origin-display { flex-direction: row; align-items: baseline; gap: 1rem; }
+  .origin-divider { display: none; }
+}
+
+/* =============================================
    SERVICES
    ============================================= */
 .services {
@@ -835,8 +935,11 @@ ul { list-style: none; }
   font-size: 0.98rem;
   color: var(--text-muted);
   line-height: 1.78;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.1rem;
   max-width: 56ch;
+}
+.why-body:last-of-type {
+  margin-bottom: 2.5rem;
 }
 
 .why-points {
