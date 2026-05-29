@@ -1,76 +1,67 @@
-// TROS Trucking & Hauling — Main JS
+// TROS Hauling & Removal — Main JS
 
-// ── Mobile nav toggle ──
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
+// ── Nav scroll effect ──
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
 
-hamburger.addEventListener('click', () => {
-  mobileMenu.classList.toggle('open');
+// ── Mobile burger menu ──
+const burger = document.getElementById('navBurger');
+const navLinks = document.getElementById('navLinks');
+
+burger.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('mobile-open');
+  burger.classList.toggle('open', isOpen);
+  burger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
 });
 
-// Close mobile menu when a link is clicked
-document.querySelectorAll('.mob-link').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
+// Close mobile menu when a nav link is clicked
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    navLinks.classList.remove('mobile-open');
+    burger.classList.remove('open');
   });
 });
 
-// ── Intersection Observer — fade-in service cards ──
+// ── Service card entrance animations ──
 const cards = document.querySelectorAll('.service-card');
 
 const cardObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const delay = entry.target.dataset.delay || 0;
-      setTimeout(() => {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }, parseInt(delay));
+      const delay = parseInt(entry.target.dataset.delay || 0);
+      setTimeout(() => entry.target.classList.add('in-view'), delay);
       cardObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.15 });
+}, { threshold: 0.12 });
 
-cards.forEach(card => {
-  card.style.opacity = '0';
-  card.style.transform = 'translateY(20px)';
-  card.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease, border-color 0.3s ease';
-  cardObserver.observe(card);
-});
+cards.forEach(card => cardObserver.observe(card));
 
-// ── Netlify form handling (inline success state) ──
+// ── Quote form — Netlify inline success ──
 const form = document.getElementById('quoteForm');
-const successMsg = document.getElementById('formSuccess');
+const formSuccess = document.getElementById('formSuccess');
 
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const data = new URLSearchParams(new FormData(form));
+    const submitBtn = form.querySelector('.btn-submit');
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+
     try {
       await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: data.toString()
+        body: new URLSearchParams(new FormData(form)).toString()
       });
       form.querySelectorAll('input, select, textarea').forEach(el => el.value = '');
-      if (successMsg) successMsg.classList.add('visible');
-      form.querySelector('.btn-submit').style.display = 'none';
+      submitBtn.style.display = 'none';
+      formSuccess.classList.add('visible');
     } catch {
-      // Fallback — let the default Netlify redirect handle it
+      // Fallback to native submit if fetch fails
       form.submit();
     }
   });
 }
-
-// ── Nav background on scroll ──
-const nav = document.querySelector('.nav-wrap');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 60) {
-    nav.style.background = 'rgba(15,14,12,0.98)';
-    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
-  } else {
-    nav.style.background = 'rgba(15,14,12,0.92)';
-    nav.style.boxShadow = 'none';
-  }
-}, { passive: true });
