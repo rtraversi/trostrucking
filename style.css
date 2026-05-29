@@ -469,19 +469,17 @@ ul { list-style: none; }
 /* Background logo ghost */
 .hero-logo-bg {
   position: absolute;
-  right: 4%;
-  top: 50%;
-  transform: translateY(-52%);
-  width: min(480px, 48vw);
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
   z-index: 1;
 }
 .hero-bg-logo {
-  width: 100%;
+  width: min(700px, 80vw);
   height: auto;
-  opacity: 0.13;
-  mix-blend-mode: screen;
-  border-radius: 50%;
+  opacity: 0.20;
 }
 
 /* Orange gradient edge at bottom */
